@@ -7,7 +7,6 @@ brotlipy==0.7.0
 certifi==2021.5.30
 cycler==0.10.0
 cytoolz==0.11.0
-daal4py==2021.2.2
 dask-searchcv==0.2.0
 Flask==2.0.1
 future==0.18.2
