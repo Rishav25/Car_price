@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAOVnpADMzMwA0PsIAEcLtADMzNwA+SugAMju6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGZmdwAAAABmZmd3dwAABmZjd3d3cABmZnd3d3d3AGZnd3d3d3cGZnInd3Ind3ZkQiREQlREdmRERERERERmZhRHd3REZmZmZEd3dEZmZmZmRHdEZmZgZmZkREZmZgBmZmZmZmZmAAZmZmZmZmAAAGZmZmZmAAAAAGZmZgAAD4HwAA4AcAAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAwAMAAOAHAAD4HwAA" rel="icon" type="image/x-icon" />   
+    <title>Car Price Prediction</title>
+</head>
+
+<body>
+
+    <div style="color: #0b0c10">
+        <form action="{{ url_for('predict')}}" method="post">
+
+            <h1>Predictive analysis</h1>
+            <h3 style="display:inline-block;margin-right:10px;">Year</h3><input style="display: inline-block;" id="first" name="Year" type="number ">
+            <br>
+            <h3 style="display:inline-block;margin-right:10px;">What is the Showroom Price?(In lakhs)</h3><input style="display: inline-block;" id="second" name="Present_Price" required="required">
+            <br>
+            <h3 style="display:inline-block;margin-right:10px;">How Many Kilometers Driven?</h3><input style="display: inline-block;" id="third" name="Kms_Driven" required="required">
+            <br>
+            <h3 style="display:inline-block;margin-right:10px;">How many owners previously (0,1,3)?</h3><input style="display: inline-block;" id="fourth" name="Owner" required="required">
+            <br>
+            <h3 style="display:inline-block;margin-right:10px;">What Is the Fuel type?</h3>
+            <select style="display: inline-block;" name="Fuel_Type_Petrol" id="fuel" required="required">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+            </select>
+            <br>
+            <h3 style="display:inline-block;margin-right:10px;">Are you A Dealer or Individual</h3><select style="display: inline-block;" name="Seller_Type_Individual" id="resea" required="required">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+            <br>
+            <h3 style="display:inline-block;margin-right:10px;">Transmission type</h3><select style="display: inline-block;" name="Transmission_Mannual" id="research" required="required">
+                <option value="Mannual">Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+            <br><br><button id="sub" type="submit ">Calculate the Selling Price</button>
+        </form>
+        <br><br><h2>{{ prediction_text }}</h2>
+    </div>
+
+
+
+
+    <style>
+        h1,h2,h3{
+            color : #66fcf1;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        body {
+            background-color : #0b0c10;
+            text-align: center;
+            padding: 0px;
+        }
+        option{
+            background-color: #45a29e;
+
+        }
+        
+        #research {
+            font-size: 18px;
+            font-family: 'Baloo Tammudu 2', cursive;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+        
+        #box {
+            border-radius: 60px;
+            border-color: 45px;
+            border-style: solid;
+            font-family: 'Baloo Tammudu 2', cursive;
+            text-align: center;
+            background-color: #0b0c10;
+            font-size: medium;
+            position: absolute;
+            width: 700px;
+            bottom: 9%;
+            height: 850px;
+            right: 30%;
+            padding: 0px;
+            margin: 0px;
+            font-size: 14px;
+            color : #66fcf1;
+        }
+        
+        #fuel {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 20px;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        
+        #fuel:hover {
+            background-color: #45a29e;
+        }
+        
+        #research {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        
+        #research:hover {
+            background-color : #45a29e;
+        }
+        
+        #resea {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        
+        #resea:hover {
+            background-color : #45a29e;
+        }
+        
+        #sub {
+            width: 150px;
+            height: 60px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+            font-family: 'Baloo Tammudu 2', cursive;
+            line-height : 1.6em;
+        }
+        
+        #sub:hover {
+            background-color: #45a29e;
+        }
+        
+        #first {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        
+        #second {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        
+        #third {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+        
+        #fourth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Baloo Tammudu 2', cursive;
+        }
+    </style>
+</body>
+
+</html>
