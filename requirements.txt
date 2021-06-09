@@ -23,7 +23,6 @@ scikit-learn-intelex==2021.20210504.131158
 Send2Trash==1.5.0
 sip==4.19.13
 terminado==0.9.4
-typing-extensions @ file:///home/ktietz/src/ci_mi/typing_extensions_1612808209620/work
 webencodings==0.5.1
 wincertstore==0.2
 zict==2.0.0
