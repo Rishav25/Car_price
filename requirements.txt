@@ -1,4 +1,4 @@
-alabaster @ file:///home/ktietz/src/ci/alabaster_1611921544520/work
+
 anyio @ file:///D:/bld/anyio_1621480545509/work/dist
 appdirs==1.4.4
 argh==0.26.2
