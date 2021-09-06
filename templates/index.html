@@ -4,176 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAOVnpADMzMwA0PsIAEcLtADMzNwA+SugAMju6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGZmdwAAAABmZmd3dwAABmZjd3d3cABmZnd3d3d3AGZnd3d3d3cGZnInd3Ind3ZkQiREQlREdmRERERERERmZhRHd3REZmZmZEd3dEZmZmZmRHdEZmZgZmZkREZmZgBmZmZmZmZmAAZmZmZmZmAAAGZmZmZmAAAAAGZmZgAAD4HwAA4AcAAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAACAAQAAwAMAAOAHAAD4HwAA" rel="icon" type="image/x-icon" />   
-    <title>Car Price Prediction</title>
+    <title>Document</title>
 </head>
 
 <body>
 
-    <div style="color: #0b0c10">
-        <form action="{{ url_for('predict')}}" method="post">
-
-            <h1>Predictive analysis</h1>
-            <h3 style="display:inline-block;margin-right:10px;">Year</h3><input style="display: inline-block;" id="first" name="Year" type="number ">
-            <br>
-            <h3 style="display:inline-block;margin-right:10px;">What is the Showroom Price?(In lakhs)</h3><input style="display: inline-block;" id="second" name="Present_Price" required="required">
-            <br>
-            <h3 style="display:inline-block;margin-right:10px;">How Many Kilometers Driven?</h3><input style="display: inline-block;" id="third" name="Kms_Driven" required="required">
-            <br>
-            <h3 style="display:inline-block;margin-right:10px;">How many owners previously ?</h3><input style="display: inline-block;" id="fourth" name="Owner" required="required">
-            <br>
-            <h3 style="display:inline-block;margin-right:10px;">What Is the Fuel type?</h3>
-            <select style="display: inline-block;" name="Fuel_Type_Petrol" id="fuel" required="required">
+    <div>
+        <h3 class="result">{{ prediction_text }}<h3></h3>
+        <form action="{{ url_for('predict')}}" method="post" class="form">
+            <h2>PREDICTIVE ANALYSIS</h2>
+            <h3>Year</h3>
+            <input name="Year" type="number ">
+            <h3>What is the Showroom Price? (In lakhs)</h3><input name="Present_Price" required="required">
+            <h3>How Many Kilometers Driven?</h3><input name="Kms_Driven" required="required">
+            <h3>How many owners previously (0 - 3) ?</h3><input name="Owner" required="required">
+            <h3>What Is the Fuel type?</h3><select name="Fuel_Type_Petrol" required="required">
                 <option value="Petrol">Petrol</option>
                 <option value="Diesel">Diesel</option>
-                <option value="CNG">CNG</option>
+                <option value="Diesel">CNG</option>
             </select>
-            <br>
-            <h3 style="display:inline-block;margin-right:10px;">Are you A Dealer or Individual</h3><select style="display: inline-block;" name="Seller_Type_Individual" id="resea" required="required">
+            <h3>Are you A Dealer or Individual</h3><select name="Seller_Type_Individual" required="required">
                 <option value="Dealer">Dealer</option>
                 <option value="Individual">Individual</option>
             </select>
-            <br>
-            <h3 style="display:inline-block;margin-right:10px;">Transmission type</h3><select style="display: inline-block;" name="Transmission_Mannual" id="research" required="required">
+            <h3>Transmission type</h3><select name="Transmission_Mannual" required="required">
                 <option value="Mannual">Manual Car</option>
                 <option value="Automatic">Automatic Car</option>
             </select>
-            <br><br><button id="sub" type="submit ">Calculate the Selling Price</button>
-        </form>
-        <br><br><h2>{{ prediction_text }}</h2>
+            <button class="submitButton" type="submit" >Calculate the Selling Price</button>
+      </form>
+    <br><br>
     </div>
 
 
 
 
     <style>
-        h1,h2,h3{
-            color : #66fcf1;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
         body {
-            background-color : #0b0c10;
+            height: auto;
+            background-color: #485461;
+            background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+        input {
+            color: #333;
+            font-size: 1.2rem;
+            margin: 0 auto;
+            padding: 1rem 1rem;
+            border-radius: 0.3rem;
+            background-color: rgb(255, 255, 255);
+            border: none;
+            width: 90%;
+            display: block;
+            border-bottom: 0.3rem solid transparent;
+            transition: all 0.3s;
+            outline: none;
+            margin-bottom: 25px;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+        h2{
+            color : white;
+            font-size : 1.75rem;
+            margin : auto;
             text-align: center;
-            padding: 0px;
+            text-shadow: 0 10px 10px black;
         }
-        option{
-            background-color: #45a29e;
-
+        h3{
+            color : white;
+            font-size : 1.3  rem;
+            display : block;
+            margin-bottom: 10px;
+            margin-left: 5px;
         }
-        
-        #research {
-            font-size: 18px;
-            font-family: 'Baloo Tammudu 2', cursive;
-            width: 100px;
-            height: 23px;
-            top: 23px;
+    select{
+            color: #333;
+            font-size: 1.2rem;
+            margin : 0 auto;
+            padding: 1rem 1rem;
+            border-radius: 0.3rem;
+            background-color: rgb(255, 255, 255);
+            border: none;
+            width: 98%;
+            display: block;
+            border-bottom: 0.3rem solid transparent;
+            transition: all 0.3s;
+            outline: none;
+            margin-bottom: 25px;
+            font-family: 'Roboto Condensed', sans-serif;
         }
-        
-        #box {
-            border-radius: 60px;
-            border-color: 45px;
-            border-style: solid;
-            font-family: 'Baloo Tammudu 2', cursive;
+    .submitButton{
+            border-radius: 4px;
+            border: none;
+            background-color: white;
+            color: black;
             text-align: center;
-            background-color: #0b0c10;
-            font-size: medium;
-            position: absolute;
-            width: 700px;
-            bottom: 9%;
-            height: 850px;
-            right: 30%;
-            padding: 0px;
-            margin: 0px;
-            font-size: 14px;
-            color : #66fcf1;
+            text-transform: uppercase;
+            font-size: 22px;
+            padding: 1.5rem 1.5rem;
+            transition: all 0.4s;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+            margin-top : 20px;
+            font-family: 'Roboto Condensed', sans-serif;
         }
+        .submitButton:hover {
+            background-color : #228b22;
+            color : white;
+        }
+    .form {
+            background-color: #28313b;
+            box-shadow: 0 10px 10px black;
+            width: 400px;
+            padding : 1rem 1rem;
+    }
+    .result {
+            color : white;
+            text-align : center;
+            font-size : 1.5rem;
+    }
         
-        #fuel {
-            width: 120px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 20px;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
-        
-        #fuel:hover {
-            background-color: #45a29e;
-        }
-        
-        #research {
-            width: 120px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 18px;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
-        
-        #research:hover {
-            background-color : #45a29e;
-        }
-        
-        #resea {
-            width: 120px;
-            height: 43px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 18px;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
-        
-        #resea:hover {
-            background-color : #45a29e;
-        }
-        
-        #sub {
-            width: 150px;
-            height: 60px;
-            text-align: center;
-            border-radius: 14px;
-            font-size: 18px;
-            font-family: 'Baloo Tammudu 2', cursive;
-            line-height : 1.6em;
-        }
-        
-        #sub:hover {
-            background-color: #45a29e;
-        }
-        
-        #first {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
-        
-        #second {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
-        
-        #third {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
-        
-        #fourth {
-            border-radius: 14px;
-            height: 25px;
-            font-size: 20px;
-            text-align: center;
-            font-family: 'Baloo Tammudu 2', cursive;
-        }
     </style>
 </body>
 
